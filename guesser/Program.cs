@@ -15,13 +15,23 @@ namespace guesser
             
             int correctguess = random.Next(0,9);
             int guess;
+            string input;
 
             Message("Guess a number between 0-9:",ConsoleColor.Green);
 
             while (true)
             {
-                guess = Convert.ToInt32(Console.ReadLine());
-                if (guess == correctguess)
+                input = Console.ReadLine();
+                if (!int.TryParse(input,out guess))
+                {
+                    Message("Enter a valid number(0-9)",ConsoleColor.Red);
+                    continue;
+                }
+                else
+                {
+                    guess = Int32.Parse(input);
+                }
+                if ( guess == correctguess)
                 {
                     Message("Congrats!!!",ConsoleColor.Yellow);
                     Message("Do you want to play again? -Y/N",ConsoleColor.Green);
